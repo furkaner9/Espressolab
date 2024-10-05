@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"
+    ></script>
+    <title>Espressolab</title>
+  </head>
+  <body>
+    <header
+      x-data="{ menuitems: [
+        { href: '#slider', title: 'ANASAYFA' },
+        { href: '#about', title: 'ESPRESSOLAB' },
+        { href: '#menu', title: 'MENÜ' },
+        { href: '#referances', title: 'BAHSETMELER' }, 
+        { href: '#contact', title: 'İLETİŞİM' }
+      ] }"
+      class="absolute z-50 top-0 w-full"
+    >
+      <div class="container mx-auto py-4 flex items-center justify-between">
+        <a href="">
+          <img
+            src="./images/espressolab.png"
+            alt="Espressolab"
+            class="lg:w-[170px]"
+          />
+        </a>
+        <nav
+          class="flex items-center gap-6 pl-6 ml-6 border-l border-gray-200 text-base"
+        >
+          <template x-for="(menuitem, index) in menuitems" :key="index">
+            <a
+              :href="menuitem.href"
+              x-text="menuitem.title"
+              class="font-medium text-white hover:underline"
+            ></a>
+          </template>
+        </nav>
+        <div>
+          <a
+            href=""
+            class="px-4 py-2 text-sm font-semibold bg-red-600 text-white rounded shadow"
+            >REZERVASYON YAP
+          </a>
+        </div>
+      </div>
+    </header>
+    <div
+      id="slider"
+      x-data="slider"
+      class="relative w-full h-screen overflow-hidden bg-black"
+    >
+      <template x-for="(slide, index) in slides">
+        <figure x-show="currentIndex == index">
+          <img x-bind:src="slide" class="absolute z-0 size-full object-cover" />
+        </figure>
+      </template>
+      <button
+        x-on:click="back()"
+        class="absolute left-6 lg:left-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md"
+      >
+        <svg
+          class="size-8 text-gray-600 mx-auto"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M15 19l-7-7 7-7"
+          ></path>
+        </svg>
+      </button>
+      <button
+        x-on:click="next()"
+        class="absolute right-6 lg:right-14 top-1/2 -translate-y-1/2 size-11 z-10 rounded-full bg-gray-100 hover:bg-gray-200 shadow-md"
+      >
+        <svg
+          class="size-8 text-gray-600 mx-auto"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M9 5l7 7-7 7"
+          ></path>
+        </svg>
+      </button>
+    </div>
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("slider", () => ({
+          slides: [
+            "./images/slide-1.jpeg",
+            "./images/slide-2.jpeg",
+            "./images/slide-3.jpeg",
+          ],
+          currentIndex: 0,
+          back() {
+            if (this.currentIndex > 0) {
+              this.currentIndex = this.currentIndex - 1;
+            }
+          },
+          next() {
+            if (this.currentIndex < this.slides.length - 1) {
+              this.currentIndex = this.currentIndex + 1;
+            }
+          },
+        }));
+      });
+    </script>
+  </body>
+</html>
