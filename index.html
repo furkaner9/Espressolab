@@ -180,7 +180,99 @@
         </div>
       </div>
     </div>
-    <div id="menu"></div>
+    <div id="menu" x-data="menu" class="py-20 bg-gray-100">
+      <div
+        x-data="{tabs:['Yiyecekler','İçecekler','Ürünler']}"
+        class="max-w-md mb-8 flex gab-x-4 p-2 bg-white shadow-md rounded-lg mx-auto justify-center"
+      >
+        <template x-for="(tab,index) in tabs" :key="index">
+          <button
+            x-text="tab"
+            x-on:click="change(index)"
+            x-bind:class="{'bg-red-600 text-white' : currentIndex== index }"
+            class="flex-1 py-2 px-4 rounded-md transition-all duration-300"
+          ></button>
+        </template>
+      </div>
+      <div class="container mx-auto px-4">
+        <div x-show="currentIndex==0">
+          <div class="grid gap-4 grid-cols-3">
+            <template x-for="(food,index)  in foods" :key="index">
+              <div
+                class="bg-white w-full shadow-lg rounded-2xl p-1 max-w-[445px]"
+              >
+                <img
+                  x-bind:src="food.image"
+                  x-bind:alt="food.name"
+                  class="h-60 rounded-2xl w-full object-cover"
+                />
+                <p
+                  x-text="food.name"
+                  class="text-lg font-semibold text-gray-800 p-3 text-center"
+                ></p>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div x-show="currentIndex==1">
+          <div class="grid gap-4 grid-cols-3">
+            <template x-for="(drink,index)  in drinks" :key="index">
+              <div
+                class="bg-white w-full shadow-lg rounded-2xl p-1 max-w-[445px]"
+              >
+                <img
+                  x-bind:src="drink.image"
+                  x-bind:alt="drink.name"
+                  class="h-60 rounded-2xl w-full object-cover"
+                />
+                <p
+                  x-text="drink.name"
+                  class="text-lg font-semibold text-gray-800 p-3 text-center"
+                ></p>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div x-show="currentIndex==2">
+          <div class="grid gap-4 grid-cols-2">
+            <template x-for="(product,index)  in products" :key="index">
+              <div class="bg-white w-full shadow-lg rounded-2xl p-4 flex">
+                <div class="size-48">
+                  <img
+                    x-bind:src="product.image"
+                    x-bind:alt="product.name"
+                    class="size-full rounded-3xl w-full object-cover bg-gray-100"
+                  />
+                </div>
+                <div class="flex-auto ml-4">
+                  <h5
+                    x-text=" product.type"
+                    class="text-sm font-medium text-red-600"
+                  ></h5>
+                  <h2 x-text="product.name" class="text-lg font-medium"></h2>
+                  <div
+                    class="bordet-t border-gray-200 mt-16 pt-4 text-sm font-medium flex"
+                  >
+                    <button
+                      x-text="product.price + '₺'"
+                      class="px-4 py-2 border-gray-200 rounded-full text-black"
+                    ></button>
+                    <button
+                      class="px-4 py-2 border-gray-200 rounded-full text-white tracking-wider bg-red-800 transition hover:bg-red-600"
+                    >
+                      Sepete Ekle
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="referance" class="py-20">
+      <div class="container"></div>
+    </div>
     <script>
       document.addEventListener("alpine:init", () => {
         Alpine.data("slider", () => ({
@@ -198,6 +290,98 @@
           next() {
             if (this.currentIndex < this.slides.length - 1) {
               this.currentIndex = this.currentIndex + 1;
+            }
+          },
+        }));
+        Alpine.data("menu", () => ({
+          foods: [
+            { image: "./images/foods/1.png", name: "Portakalı Kek" },
+            { image: "./images/foods/2.png", name: "Parça Çikolatalı Kuki" },
+            { image: "./images/foods/3.png", name: "Peynirli Simit Sandiviç" },
+            {
+              image: "./images/foods/4.jpeg",
+              name: "Eşkili Mayalı Hindi Fümeli Sandiviç",
+            },
+            { image: "./images/foods/5.png", name: "Mont Blanc" },
+            { image: "./images/foods/6.jpeg", name: "Lotus Cheesecake" },
+          ],
+          drinks: [
+            { image: "./images/drinks/1.jpg", name: "Spanish Latte" },
+            { image: "./images/drinks/2.jpeg", name: "Iced Caffe Latte" },
+            { image: "./images/drinks/3.jpeg", name: "Iced Lotus Latte" },
+            { image: "./images/drinks/4.jpeg", name: "Sour Green Plum Shake" },
+            { image: "./images/drinks/5.jpeg", name: "Iced Matcha Latte" },
+            { image: "./images/drinks/6.jpeg", name: "Cranberry Hibiscus" },
+          ],
+          products: [
+            {
+              image: "./images/products/1.png",
+              type: "Kahve",
+              name: "Kenya Karogoto 250 gr ",
+              price: "450,00",
+            },
+            {
+              image: "./images/products/2.png",
+              type: "Kahve",
+              name: "El Salvador El Cerro Pacas 250 gr ",
+              price: "450,00",
+            },
+            {
+              image: "./images/products/3.png",
+              type: "Termos",
+              name: "Tutacaklı Bordo Termos 480 ml ",
+              price: "825,00",
+            },
+            {
+              image: "./images/products/4.png",
+              type: "Termos",
+              name: "Siyah Uzun Termos 480 ml ",
+              price: "825,00",
+            },
+            {
+              image: "./images/products/5.png",
+              type: "Çay",
+              name: "Kuşburnu 50 gr ",
+              price: "825,00",
+            },
+            {
+              image: "./images/products/6.png",
+              type: "Çay",
+              name: "Winterfall Tea 50 gr",
+              price: "450,00",
+            },
+          ],
+          currentIndex: 0,
+          change(index) {
+            this.currentIndex = index;
+          },
+        }));
+        Alpine.data("referances", () => ({
+          comments: [
+            {
+              message:
+                "Espressolab , benim için kahve deneyimini zirvesidir !Her fincan kahvesi ozenle hazırlamış ve harika bir lezzete sahip  ",
+              fullname: "John Snow",
+            },
+            {
+              message:
+                "Espressolab , benim için kahve deneyimini zirvesidir !Her fincan kahvesi ozenle hazırlamış ve harika bir lezzete sahip  ",
+              fullname: "Lionel Messi ",
+            },
+
+            {
+              message:
+                "Espressolab , benim için kahve deneyimini zirvesidir !Her fincan kahvesi ozenle hazırlamış ve harika bir lezzete sahip  ",
+              fullname: "Lebron James",
+            },
+          ],
+          currentIndex: 0,
+          change(index) {
+            var lastIndex = this.comments.length - 1;
+            if (index < 0) {
+              this.currentIndex = lastIndex;
+            } else if (index > lastIndex) {
+              this.currentIndex = index;
             }
           },
         }));
