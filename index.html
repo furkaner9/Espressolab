@@ -16,7 +16,7 @@
         { href: '#slider', title: 'ANASAYFA' },
         { href: '#about', title: 'ESPRESSOLAB' },
         { href: '#menu', title: 'MENÜ' },
-        { href: '#referances', title: 'BAHSETMELER' }, 
+        { href: '#references', title: 'BAHSETMELER' }, 
         { href: '#contact', title: 'İLETİŞİM' }
       ] }"
       class="absolute z-50 top-0 w-full"
@@ -270,8 +270,53 @@
         </div>
       </div>
     </div>
-    <div id="referance" class="py-20">
-      <div class="container"></div>
+    <div id="references" x-data="references" class="py-20">
+      <div
+        class="container mx-auto flex flex-row rounded-lg overflow-hidden bg-gray-100 items-stretch"
+      >
+        <div class="relative w-1/2 bg-red-600 flex items-center">
+          <div class="w-64 mx-auto text-5xl font-semibold text-white">
+            <span class="block">Müşteriler</span>
+            <span class="block">Neler</span>
+            <span class="block">Söylüyor</span>
+          </div>
+          <div class="absolute right-2 bottom-2 block">
+            <button
+              x-on:click="change(currentIndex -1)"
+              class="rounded-l-full bg-gray-100 text-gray-600 font-bold w-12 h-10 hover:bg-gray-200"
+            >
+              &#8592;
+            </button>
+            <button
+              x-on:click="change(currentIndex +1)"
+              class="rounded-r-full bg-gray-100 text-gray-600 font-bold w-12 h-10 hover:bg-gray-200"
+            >
+              &#8594;
+            </button>
+          </div>
+        </div>
+        <div class="w-1/2 items-center min-h-96">
+          <template x-for="(comment ,index) in comments" :key="index">
+            <div x-show="currentIndex==index" class="p-14">
+              <p
+                x-text="comment.message"
+                class="text-xl text-gray-700 font-normal"
+              ></p>
+              <h4
+                x-text="comment.fullname"
+                class="text-md font-bold text-gray-900 mt-2"
+              ></h4>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+    <div id="contact " class="py-20 bg-black">
+      <div class="container mx-auto px-4">
+        <div class="flex items gab-10 text-white">
+          <div></div>
+        </div>
+      </div>
     </div>
     <script>
       document.addEventListener("alpine:init", () => {
@@ -356,7 +401,7 @@
             this.currentIndex = index;
           },
         }));
-        Alpine.data("referances", () => ({
+        Alpine.data("references", () => ({
           comments: [
             {
               message:
