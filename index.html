@@ -313,11 +313,116 @@
     </div>
     <div id="contact " class="py-20 bg-black">
       <div class="container mx-auto px-4">
-        <div class="flex items gab-10 text-white">
-          <div></div>
+        <div class="flex items-center gab-10">
+          <div class="flex-1">
+            <h2 class="text-4xl font-bold text-gray-400">Bize Yazın</h2>
+            <h2 class="text-4xl font-bold text-white">
+              Size Nasıl Yardımcı Olabiliriz
+            </h2>
+          </div>
+          <div class="flex-1">
+            <form class="text-white">
+              <div>
+                <label for="name" class="mb-3 block text-base font-medium">
+                  İsim Soyisim</label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="w-full rounded-md border-none bg-white py-3 text-base font-medium outline-none"
+                />
+              </div>
+              <div class="mt-3">
+                <label for="name" class="mb-3 block text-base font-medium">
+                  E-posta adresi</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="w-full rounded-md border-none bg-white py-3 text-base font-medium outline-none"
+                />
+              </div>
+              <div class="mt-3">
+                <label for="name" class="mb-3 block text-base font-medium">
+                  Telefon</label
+                >
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  class="w-full rounded-md border-none bg-white py-3 text-base font-medium outline-none"
+                />
+              </div>
+              <div class="mt-3">
+                <label for="name" class="mb-3 block text-base font-medium">
+                  Mesaj</label
+                >
+                <textarea
+                  rows="4"
+                  name="message"
+                  id="message"
+                  class="w-full rounded-md border-none bg-white py-3 text-base font-medium outline-none resize-none"
+                ></textarea>
+              </div>
+              <div class="mt-3">
+                <button
+                  class="bg-red-600 text-center font-semibold rounded-lg px-10 py-3 hover:bg-red-500"
+                >
+                  Gönder
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
+    <div id="contact-us" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-3 gap-5 text-center">
+          <div class="flex flex-col items-center gap-3">
+            <p class="text-2xl font-extrabold text-black">E-posta</p>
+            <p class="text-base text-gray-900">Bize şu adresten ulaşın :</p>
+            <a
+              href="mailto:info@espressolab.com"
+              class="text-lg font-bold hover:text-red-600"
+            >
+              info@espressolab.com
+            </a>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <p class="text-2xl font-extrabold text-black">Telefon</p>
+            <p class="text-base text-gray-900">Bize telefon ile ulaşın :</p>
+            <a href="tel:4448464" class="text-lg font-bold hover:text-red-600">
+              444 8 464
+            </a>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <p class="text-2xl font-extrabold text-black">Adres</p>
+            <p class="text-base text-gray-900">
+              Toskopran, General Ali Rıza Gürcan Caddesi Çırpıcı çıkmaz sok.
+              No:2
+            </p>
+            <a class="text-lg font-bold hover:text-red-600">
+              Toskopran, General Ali Rıza Gürcan Caddesi Çırpıcı çıkmaz sok.
+              No:2
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer" class="bg-gray-100 py-10">
+      <div class="container mx-auto px-4"></div>
+    </div>
+    <div id="coptright" class="bg-gray-200 py-8">
+      <div class="container mx-auto px-4">
+        <p class="textt-center">
+          Copyright 2024 Espressolab. Tüm hakları saklıdır
+        </p>
+      </div>
+    </div>
+
     <script>
       document.addEventListener("alpine:init", () => {
         Alpine.data("slider", () => ({
